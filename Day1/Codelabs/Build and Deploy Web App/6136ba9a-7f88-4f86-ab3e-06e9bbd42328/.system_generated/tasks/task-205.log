@@ -1,0 +1,134 @@
+Program 'python3.exe' failed to run: The file cannot be accessed by the systemAt 
+C:\Users\leloc\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin\gcloud.ps1:47 char:11
++     if ($(& $c -c "import sys; vi = sys.version_info; print (vi >= $M ...
++           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.
+At C:\Users\leloc\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin\gcloud.ps1:47 char:11
++     if ($(& $c -c "import sys; vi = sys.version_info; print (vi >= $M ...
++           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+ 
+[
+  {
+    "apiVersion": "serving.knative.dev/v1",
+    "kind": "Service",
+    "metadata": {
+      "annotations": {
+        "run.googleapis.com/build-enable-automatic-updates": "false",
+        "run.googleapis.com/build-id": "bff76582-3eb0-41a2-b48d-4d79c9e7ec8d",
+        "run.googleapis.com/build-image-uri": "us-central1-docker.pkg.dev/gen-lang-client-0529022781/cloud-run-source-deploy/document-processor",
+        "run.googleapis.com/build-name": "projects/749201035380/locations/us-central1/builds/bff76582-3eb0-41a2-b48d-4d79c9e7ec8d",
+        "run.googleapis.com/build-source-location": "gs://run-sources-gen-lang-client-0529022781-us-central1/services/document-processor/1781774975.214131-6e41fad20b054d80b163b3edcd238d18.zip#1781774975899605",
+        "run.googleapis.com/client-name": "gcloud",
+        "run.googleapis.com/client-version": "573.0.0",
+        "run.googleapis.com/ingress": "all",
+        "run.googleapis.com/ingress-status": "all",
+        "run.googleapis.com/maxScale": "20",
+        "run.googleapis.com/operation-id": "2aa02ceb-b85f-4abf-bf9c-94459f92655c",
+        "run.googleapis.com/urls": "[\"https://document-processor-749201035380.us-central1.run.app\",\"https://document-processor-zjftj77cdq-uc.a.run.app\"]",
+        "serving.knative.dev/creator": "lelocminhphuc@gmail.com",
+        "serving.knative.dev/lastModifier": "lelocminhphuc@gmail.com"
+      },
+      "creationTimestamp": "2026-06-18T09:30:17.291219Z",
+      "generation": 1,
+      "labels": {
+        "cloud.googleapis.com/location": "us-central1"
+      },
+      "name": "document-processor",
+      "namespace": "749201035380",
+      "resourceVersion": "AAZUg9Pybjk",
+      "selfLink": "/apis/serving.knative.dev/v1/namespaces/749201035380/services/document-processor",
+      "uid": "ac5b5d1f-b520-49e4-ab65-71b803c07728"
+    },
+    "spec": {
+      "template": {
+        "metadata": {
+          "annotations": {
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/client-version": "573.0.0",
+            "run.googleapis.com/startup-cpu-boost": "true"
+          },
+          "labels": {
+            "client.knative.dev/nonce": "ewhcasbyjt",
+            "run.googleapis.com/startupProbeType": "Default"
+          }
+        },
+        "spec": {
+          "containerConcurrency": 80,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "BQ_DATASET",
+                  "value": "document_pipeline BQ_TABLE=metadata"
+                }
+              ],
+              "image": "us-central1-docker.pkg.dev/gen-lang-client-0529022781/cloud-run-source-deploy/document-processor@sha256:3f7068d674f6167bf8fe187a7c43a8302a64940c91a2cf1165be25397f715a9f",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "name": "http1"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "1000m",
+                  "memory": "512Mi"
+                }
+              },
+              "startupProbe": {
+                "failureThreshold": 1,
+                "periodSeconds": 240,
+                "tcpSocket": {
+                  "port": 8080
+                },
+                "timeoutSeconds": 240
+              }
+            }
+          ],
+          "serviceAccountName": "doc-pipeline-runner@gen-lang-client-0529022781.iam.gserviceaccount.com",
+          "timeoutSeconds": 300
+        }
+      },
+      "traffic": [
+        {
+          "latestRevision": true,
+          "percent": 100
+        }
+      ]
+    },
+    "status": {
+      "address": {
+        "url": "https://document-processor-zjftj77cdq-uc.a.run.app"
+      },
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-06-18T09:30:33.593401Z",
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastTransitionTime": "2026-06-18T09:30:21.735120Z",
+          "status": "True",
+          "type": "ConfigurationsReady"
+        },
+        {
+          "lastTransitionTime": "2026-06-18T09:30:33.537230Z",
+          "status": "True",
+          "type": "RoutesReady"
+        }
+      ],
+      "latestCreatedRevisionName": "document-processor-00001-p69",
+      "latestReadyRevisionName": "document-processor-00001-p69",
+      "observedGeneration": 1,
+      "traffic": [
+        {
+          "latestRevision": true,
+          "percent": 100,
+          "revisionName": "document-processor-00001-p69"
+        }
+      ],
+      "url": "https://document-processor-zjftj77cdq-uc.a.run.app"
+    }
+  }
+]

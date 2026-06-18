@@ -1,0 +1,9 @@
+Successfully scheduled one-shot timer.
+Expected to fire at: 2026-06-18T11:31:11+02:00
+Prompt: Check deploy.ps1 execution status - second check.
+
+[2026-06-18T11:30:21+02:00] Still waiting. Remaining time: 50s
+[2026-06-18T11:30:31+02:00] Still waiting. Remaining time: 40s
+[2026-06-18T11:30:41+02:00] Still waiting. Remaining time: 30s
+[2026-06-18T11:30:51+02:00] Still waiting. Remaining time: 20s
+[2026-06-18T11:30:51+02:00] Timer cancelled: agent received a message during wait.

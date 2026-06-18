@@ -1,0 +1,13 @@
+--- Running Local Mock Tests ---
+Make sure your Flask server is running locally (e.g. via python main.py) before running this script.
+
+Test Case 1: Mock PDF file (should bypass GCS download and write mocked OCR metadata)
+Sending mock Pub/Sub event for: gs://my-mock-bucket/report.pdf (application/pdf)
+CONNECTION ERROR: Could not connect to http://localhost:8080/. Is the Flask server running?
+Reason: [WinError 10061] No connection could be made because the target machine actively refused it
+--------------------------------------------------
+Test Case 2: Mock TXT file (will attempt to download from GCS and count words)
+Sending mock Pub/Sub event for: gs://my-mock-bucket/sample.txt (text/plain)
+CONNECTION ERROR: Could not connect to http://localhost:8080/. Is the Flask server running?
+Reason: [WinError 10061] No connection could be made because the target machine actively refused it
+--------------------------------------------------

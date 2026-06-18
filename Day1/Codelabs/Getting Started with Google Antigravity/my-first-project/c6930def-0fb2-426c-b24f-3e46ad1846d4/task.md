@@ -1,0 +1,5 @@
+- [x] Initialize package.json and project setup
+- [x] Install dependencies (rss-parser, chalk, commander)
+- [x] Create and implement index.js
+- [x] Verify execution of the CLI tool
+- [x] Create walkthrough.md summary
