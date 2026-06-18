@@ -1,7 +1,0 @@
-Updated IAM policy for topic [gcs-document-uploads].
-bindings:
-- members:
-  - serviceAccount:service-749201035380@gs-project-accounts.iam.gserviceaccount.com
-  role: roles/pubsub.publisher
-etag: BwZUg9q3Odc=
-version: 1

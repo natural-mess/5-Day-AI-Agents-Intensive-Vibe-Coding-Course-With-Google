@@ -1,7 +1,0 @@
-Successfully scheduled one-shot timer.
-Expected to fire at: 2026-06-18T11:40:06+02:00
-Prompt: Check second run of verify_pipeline.py.
-
-[2026-06-18T11:39:46+02:00] Still waiting. Remaining time: 20s
-[2026-06-18T11:39:56+02:00] Still waiting. Remaining time: 10s
-[2026-06-18T11:40:06+02:00] Timer fired.

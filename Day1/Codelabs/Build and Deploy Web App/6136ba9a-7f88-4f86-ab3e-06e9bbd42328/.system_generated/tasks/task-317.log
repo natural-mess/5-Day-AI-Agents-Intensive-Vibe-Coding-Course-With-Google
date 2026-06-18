@@ -1,5 +1,0 @@
-Successfully scheduled one-shot timer.
-Expected to fire at: 2026-06-18T11:58:40+02:00
-Prompt: Check separate set-env-vars flags update task-315
-
-[2026-06-18T11:58:17+02:00] Timer cancelled: agent received a message during wait.

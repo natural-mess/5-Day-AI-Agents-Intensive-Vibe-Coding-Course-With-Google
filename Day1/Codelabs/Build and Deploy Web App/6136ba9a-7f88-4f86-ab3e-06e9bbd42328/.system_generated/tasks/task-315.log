@@ -1,6 +1,0 @@
-Deploying...
-Creating Revision...........................................................................................done
-Routing traffic.....done
-Done.
-Service [document-processor] revision [document-processor-00004-z4g] has been deployed and is serving 100 percent of traffic.
-Service URL: https://document-processor-749201035380.us-central1.run.app
