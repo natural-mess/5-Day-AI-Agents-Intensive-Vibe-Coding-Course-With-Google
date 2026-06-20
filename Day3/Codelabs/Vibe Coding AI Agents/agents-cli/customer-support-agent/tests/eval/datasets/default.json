@@ -1,0 +1,67 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "rates_standard",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "What are your shipping rates for standard delivery?"}]
+      }
+    },
+    {
+      "eval_case_id": "rates_free",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Does shipping become free if my order is $60?"}]
+      }
+    },
+    {
+      "eval_case_id": "tracking_valid",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Where is my package? The tracking number is TRK987654."}]
+      }
+    },
+    {
+      "eval_case_id": "tracking_missing",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "I want to track my order."}]
+      }
+    },
+    {
+      "eval_case_id": "delivery_sunday",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Can I get my package delivered on Sunday?"}]
+      }
+    },
+    {
+      "eval_case_id": "returns_window",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "What is the return window for my package?"}]
+      }
+    },
+    {
+      "eval_case_id": "unrelated_capital",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "What is the capital of Japan?"}]
+      }
+    },
+    {
+      "eval_case_id": "unrelated_math",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "What is 25 * 4?"}]
+      }
+    },
+    {
+      "eval_case_id": "unrelated_coding",
+      "prompt": {
+        "role": "user",
+        "parts": [{"text": "Write a python function to add two numbers."}]
+      }
+    }
+  ]
+}

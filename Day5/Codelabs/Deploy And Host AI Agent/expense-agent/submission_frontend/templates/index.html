@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard - Pending Approvals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary: #3b82f6;
+            --success: #10b981;
+            --danger: #ef4444;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Radial glows for glassmorphism effect */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 600;
+            margin: 0;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .expense-amount {
+            font-size: 2rem;
+            font-weight: 600;
+            margin: 10px 0;
+            color: #fff;
+        }
+
+        .session-id {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 0;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-approve {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-approve:hover:not(:disabled) {
+            background: rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-reject {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-reject:hover:not(:disabled) {
+            background: rgba(239, 68, 68, 0.3);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: currentColor;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: auto;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        .modal-body {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+        }
+
+        #empty-state {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 40px;
+            grid-column: 1 / -1;
+            display: none;
+        }
+
+        .loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            grid-column: 1 / -1;
+        }
+
+        .main-loader {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Pending Approvals</h1>
+            <div class="subtitle">Review and manage flagged employee expenses</div>
+        </header>
+
+        <div id="card-grid" class="card-grid">
+            <div class="loader-container" id="initial-loader">
+                <div class="main-loader"></div>
+            </div>
+            <div id="empty-state">
+                <h2>All caught up!</h2>
+                <p>There are no pending expenses requiring your approval.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="result-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Agent Response</span>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-response">
+                Processing...
+            </div>
+            <button class="btn-approve" onclick="closeModal()" style="width: 100%">Close</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', fetchPending);
+
+        async function fetchPending() {
+            try {
+                const response = await fetch('/api/pending');
+                const data = await response.json();
+                
+                document.getElementById('initial-loader').style.display = 'none';
+                
+                const grid = document.getElementById('card-grid');
+                if (!data.pending || data.pending.length === 0) {
+                    document.getElementById('empty-state').style.display = 'block';
+                    return;
+                }
+
+                data.pending.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'glass-card';
+                    card.id = `card-${item.interrupt_id}`;
+                    
+                    const amount = item.expense_amount;
+                    const amountDisplay = typeof amount === 'number' ? `$${amount.toFixed(2)}` : 'Unknown Amount';
+                    
+                    card.innerHTML = `
+                        <div style="color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Review Required</div>
+                        <div class="expense-amount">${amountDisplay}</div>
+                        <div class="session-id">Session: ${item.session_id.substring(0, 8)}...</div>
+                        
+                        <div class="actions">
+                            <button class="btn-reject" onclick="handleAction('${item.session_id}', '${item.interrupt_id}', 'rejected', this)">
+                                <div class="spinner"></div>
+                                Reject
+                            </button>
+                            <button class="btn-approve" onclick="handleAction('${item.session_id}', '${item.interrupt_id}', 'approved', this)">
+                                <div class="spinner"></div>
+                                Approve
+                            </button>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            } catch (error) {
+                console.error("Error fetching pending:", error);
+                document.getElementById('initial-loader').style.display = 'none';
+                document.getElementById('empty-state').style.display = 'block';
+                document.getElementById('empty-state').innerHTML = '<h2 style="color:var(--danger)">Connection Error</h2><p>Failed to load pending approvals.</p>';
+            }
+        }
+
+        async function handleAction(sessionId, interruptId, action, btnElement) {
+            // UI Loading state
+            const card = document.getElementById(`card-${interruptId}`);
+            const buttons = card.querySelectorAll('button');
+            buttons.forEach(b => b.disabled = true);
+            btnElement.querySelector('.spinner').style.display = 'block';
+
+            try {
+                const response = await fetch(`/api/action/${sessionId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: action,
+                        interrupt_id: interruptId
+                    })
+                });
+                
+                const result = await response.json();
+                
+                // Remove card
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    card.remove();
+                    // Check if empty
+                    const grid = document.getElementById('card-grid');
+                    if (grid.querySelectorAll('.glass-card').length === 0) {
+                        document.getElementById('empty-state').style.display = 'block';
+                    }
+                }, 300);
+
+                // Show modal with response
+                showModal(result.agent_response || "Action successfully processed by Agent Runtime.");
+
+            } catch (error) {
+                console.error("Error submitting action:", error);
+                alert("Failed to communicate with Agent Runtime. Check console for details.");
+                buttons.forEach(b => b.disabled = false);
+                btnElement.querySelector('.spinner').style.display = 'none';
+            }
+        }
+
+        function showModal(text) {
+            document.getElementById('modal-response').textContent = text;
+            document.getElementById('result-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('result-modal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+metrics_to_run:
+  - custom_response_quality
+  - shipping_compliance
+
+custom_metrics:
+  - name: custom_response_quality
+    prompt_template: |
+      You are an expert quality assurance evaluator for an enterprise AI assistant. Your task is to evaluate the agent's final response given the user prompt and the full agent trace (for tool-call and reasoning context).
+
+      Please grade the response quality on a scale of 1 to 5 according to the following criteria:
+      1 (Poor): The response fails to address the query, contains incorrect information, or is highly confusing.
+      2 (Below Average): The response partially addresses the query but has notable inaccuracies, gaps, or unclear structure.
+      3 (Acceptable): The response adequately answers the query but lacks depth, clear structure, or misses minor details.
+      4 (Good): The response is accurate, well-structured, and covers the query thoroughly with minor room for improvement.
+      5 (Excellent): The response is highly relevant, comprehensive, flawlessly accurate, and excellently structured.
+
+      ### Target Evaluation:
+      User Prompt: {prompt}
+      Final Response: {response}
+      Full Agent Trace: {agent_data}
+
+      Return your evaluation as a valid JSON object matching this structure:
+      {
+        "score": <integer between 1 and 5>,
+        "explanation": "<detailed string explaining the rationale for the score assigned>"
+      }
+
+  - name: shipping_compliance
+    prompt_template: |
+      You are an expert QA evaluator. Your task is to evaluate a customer support agent for a shipping company.
+      The agent must follow these rules:
+      1. ONLY answer queries related to shipping (rates, tracking, delivery, returns).
+      2. For unrelated queries (e.g. general knowledge, math, coding, other topics), the agent MUST politely decline to answer, stating that it can only assist with shipping.
+      3. For shipping queries, the agent must provide accurate information according to these policies:
+         - Standard Shipping: $5.00 flat rate (3-5 business days)
+         - Express Shipping: $15.00 flat rate (1-2 business days)
+         - Free shipping on orders over $50.00
+         - Tracking: Numbers look like 'TRK' + 6 digits (e.g. TRK123456). Status: "In Transit - Estimated Delivery: 2 days". If tracking query lacks number, ask for one.
+         - Delivery: Mon-Sat, 8 AM - 8 PM. No Sunday/holiday delivery.
+         - Returns: Within 30 days of delivery. Free return shipping. Refunds in 5-7 business days.
+
+      ### Target Evaluation:
+      User Prompt: {prompt}
+      Final Response: {response}
+      Full Agent Trace: {agent_data}
+
+      Judge if:
+      - The query was correctly classified and handled (shipping answered vs unrelated declined).
+      - The answer (if shipping) complies with the policies above.
+      - The decline (if unrelated) is polite and doesn't answer the unrelated question.
+
+      Return your evaluation as a valid JSON object matching this structure:
+      {
+        "score": <1 if PASS, 0 if FAIL>,
+        "explanation": "<detailed explanation of whether it passed or failed and why>"
+      }

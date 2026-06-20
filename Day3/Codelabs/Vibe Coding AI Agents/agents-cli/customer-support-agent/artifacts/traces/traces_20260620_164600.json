@@ -1,0 +1,580 @@
+{
+  "eval_cases": [
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "What are your shipping rates for standard delivery?"
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "Hello there! I would be absolutely thrilled to help you with our shipping rates today! 🌟 \n\nWe have some super exciting and budget-friendly options to get your packages delivered straight to your door! Here is the scoop on our shipping rates:\n\n*   🚚 **Standard Shipping:** Just a **$5.00 flat rate**! Your package will arrive in a speedy **3-5 business days**! \n*   ⚡ **Express Shipping:** In a rush? We've got you covered! Get your package in just **1-2 business days** for a **$15.00 flat rate**!\n*   🎉 **THE BEST PART:** You can get **FREE standard shipping** on all orders over **$50.00**! Oh yes, completely free! 😍✨\n\nLet me know if you have any other questions or if you need help with anything else. I am always happy to help! Have a wonderful day! 🚀"
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "rates_standard",
+      "agent_data": {
+        "agents": {
+          "customer_support_agent": {
+            "agent_id": "customer_support_agent",
+            "agent_type": "Workflow",
+            "description": "Customer support routing agent for a shipping company.",
+            "tools": [],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "classifier",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "{\"is_shipping_related\":true,\"reason\":\"The user is asking about shipping rates and standard delivery options.\"}"
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "shipping_faq_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "Hello there! I would be absolutely thrilled to help you with our shipping rates today! 🌟 \n\nWe have some super exciting and budget-friendly options to get your packages delivered straight to your door! Here is the scoop on our shipping rates:\n\n*   🚚 **Standard Shipping:** Just a **$5.00 flat rate**! Your package will arrive in a speedy **3-5 business days**! \n*   ⚡ **Express Shipping:** In a rush? We've got you covered! Get your package in just **1-2 business days** for a **$15.00 flat rate**!\n*   🎉 **THE BEST PART:** You can get **FREE standard shipping** on all orders over **$50.00**! Oh yes, completely free! 😍✨\n\nLet me know if you have any other questions or if you need help with anything else. I am always happy to help! Have a wonderful day! 🚀"
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "Does shipping become free if my order is $60?"
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "Hello there! I have some absolutely *wonderful* news for you! 🌟 \n\nYes, absolutely! **Your shipping will be 100% FREE!** 🎉✨\n\nWe are super excited to offer **FREE Standard Shipping** on all orders over **$50.00**! Since your order is $60.00, you have easily cleared that threshold! Woohoo! 🥳\n\nHere is a quick look at our playful shipping options for you:\n*   **Standard Shipping:** **FREE** for your $60 order! (Normally a $5.00 flat rate, delivering the joy to your door in 3-5 business days) 🚚💨\n*   **Express Shipping:** Only $15.00 if you need your goodies extra fast! (Delivered in 1-2 business days) ⚡\n\nWe can't wait to get your package on its way to you! If you have any other questions or need help placing your order, please let me know. Happy shopping! 🛍️🎈"
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "rates_free",
+      "agent_data": {
+        "agents": {
+          "customer_support_agent": {
+            "agent_id": "customer_support_agent",
+            "agent_type": "Workflow",
+            "description": "Customer support routing agent for a shipping company.",
+            "tools": [],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "classifier",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "{\"is_shipping_related\":true,\"reason\":\"The user is asking about the free shipping threshold for their order value, which directly relates to shipping rates.\"}"
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "shipping_faq_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "Hello there! I have some absolutely *wonderful* news for you! 🌟 \n\nYes, absolutely! **Your shipping will be 100% FREE!** 🎉✨\n\nWe are super excited to offer **FREE Standard Shipping** on all orders over **$50.00**! Since your order is $60.00, you have easily cleared that threshold! Woohoo! 🥳\n\nHere is a quick look at our playful shipping options for you:\n*   **Standard Shipping:** **FREE** for your $60 order! (Normally a $5.00 flat rate, delivering the joy to your door in 3-5 business days) 🚚💨\n*   **Express Shipping:** Only $15.00 if you need your goodies extra fast! (Delivered in 1-2 business days) ⚡\n\nWe can't wait to get your package on its way to you! If you have any other questions or need help placing your order, please let me know. Happy shopping! 🛍️🎈"
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "Where is my package? The tracking number is TRK987654."
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "Hello there! 🌟 I would be absolutely delighted to help you track your package today! 📦✨\n\nI have successfully looked up your tracking number, **TRK987654**, and I have some great news! \n\nYour package is currently **In Transit - Estimated Delivery: 2 days**! 🚚💨 \n\nJust as a quick reminder, our wonderful delivery team makes rounds Monday through Saturday from 8 AM to 8 PM (we rest on Sundays and major holidays). You'll be unboxing your package in no time! 🎉\n\nIf you have any other questions or need help with anything else, please don't hesitate to ask. Have a truly wonderful day! ☀️💛"
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "tracking_valid",
+      "agent_data": {
+        "agents": {
+          "customer_support_agent": {
+            "agent_id": "customer_support_agent",
+            "agent_type": "Workflow",
+            "description": "Customer support routing agent for a shipping company.",
+            "tools": [],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "classifier",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "{\"is_shipping_related\":true,\"reason\":\"The user is asking about the location of their package and has provided a tracking number, which directly relates to shipping tracking.\"}"
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "shipping_faq_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "Hello there! 🌟 I would be absolutely delighted to help you track your package today! 📦✨\n\nI have successfully looked up your tracking number, **TRK987654**, and I have some great news! \n\nYour package is currently **In Transit - Estimated Delivery: 2 days**! 🚚💨 \n\nJust as a quick reminder, our wonderful delivery team makes rounds Monday through Saturday from 8 AM to 8 PM (we rest on Sundays and major holidays). You'll be unboxing your package in no time! 🎉\n\nIf you have any other questions or need help with anything else, please don't hesitate to ask. Have a truly wonderful day! ☀️💛"
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "I want to track my order."
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "Hello there! I would be absolutely thrilled to help you track your order today! 🌟\n\nTo get started, could you please provide your tracking number? It should look like the letters **TRK** followed by 6 digits (for example: **TRK123456**). 🔎\n\nOnce you share that with me, I will gladly look up the status of your package right away! Thank you so much, and I look forward to helping you! 😊✨"
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "tracking_missing",
+      "agent_data": {
+        "agents": {
+          "customer_support_agent": {
+            "agent_id": "customer_support_agent",
+            "agent_type": "Workflow",
+            "description": "Customer support routing agent for a shipping company.",
+            "tools": [],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "classifier",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "{\"is_shipping_related\":true,\"reason\":\"The user is asking to track their order, which is directly related to shipping and tracking.\"}"
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "shipping_faq_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "Hello there! I would be absolutely thrilled to help you track your order today! 🌟\n\nTo get started, could you please provide your tracking number? It should look like the letters **TRK** followed by 6 digits (for example: **TRK123456**). 🔎\n\nOnce you share that with me, I will gladly look up the status of your package right away! Thank you so much, and I look forward to helping you! 😊✨"
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "Can I get my package delivered on Sunday?"
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "Hello! Thanks so much for reaching out to us today! 🌟 \n\nTo answer your question: we currently deliver packages **Monday through Saturday, from 8 AM to 8 PM**. We do not deliver on Sundays or major holidays, so we won't be able to deliver your package on a Sunday. \n\nBut don't worry! We have some absolutely fantastic shipping options to get your packages to you super fast during the week! Check these out:\n*   **Standard Shipping:** Just a **$5.00 flat rate** (3-5 business days)! 🚚\n*   **Express Shipping:** Super speedy for a **$15.00 flat rate** (1-2 business days)! ⚡\n*   **Free Shipping:** Spend **over $50.00** and your standard shipping is **COMPLETELY FREE!** 🎉 How exciting is that?!\n\nIf you already have a package on the way and want to see when it's scheduled to arrive, just reply with your tracking number (it looks like 'TRK' followed by 6 digits, like TRK123456) and I would be absolutely delighted to check the status for you! \n\nHave a wonderful day, and let me know if there is anything else I can do to help! 😊✨"
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "delivery_sunday",
+      "agent_data": {
+        "agents": {
+          "customer_support_agent": {
+            "agent_id": "customer_support_agent",
+            "agent_type": "Workflow",
+            "description": "Customer support routing agent for a shipping company.",
+            "tools": [],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "classifier",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "{\"is_shipping_related\":true,\"reason\":\"The user is asking about Sunday delivery options for their package, which is directly related to shipping and delivery services.\"}"
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "shipping_faq_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "Hello! Thanks so much for reaching out to us today! 🌟 \n\nTo answer your question: we currently deliver packages **Monday through Saturday, from 8 AM to 8 PM**. We do not deliver on Sundays or major holidays, so we won't be able to deliver your package on a Sunday. \n\nBut don't worry! We have some absolutely fantastic shipping options to get your packages to you super fast during the week! Check these out:\n*   **Standard Shipping:** Just a **$5.00 flat rate** (3-5 business days)! 🚚\n*   **Express Shipping:** Super speedy for a **$15.00 flat rate** (1-2 business days)! ⚡\n*   **Free Shipping:** Spend **over $50.00** and your standard shipping is **COMPLETELY FREE!** 🎉 How exciting is that?!\n\nIf you already have a package on the way and want to see when it's scheduled to arrive, just reply with your tracking number (it looks like 'TRK' followed by 6 digits, like TRK123456) and I would be absolutely delighted to check the status for you! \n\nHave a wonderful day, and let me know if there is anything else I can do to help! 😊✨"
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "What is the return window for my package?"
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "Hello there! I would be absolutely delighted to help you with your return question today! 😊\n\nYou have a **30-day window** from the date of delivery to return your package. 📅 \n\nThe even better news? Return shipping is completely **FREE**! Just use our pre-paid return label to send your package back to us. Once we receive your returned item, we will process your refund within **5-7 business days**. \n\nIf you need help getting a return label or have any other questions, please let me know. I'm always here to help! Have a wonderful day! 🌟"
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "returns_window",
+      "agent_data": {
+        "agents": {
+          "customer_support_agent": {
+            "agent_id": "customer_support_agent",
+            "agent_type": "Workflow",
+            "description": "Customer support routing agent for a shipping company.",
+            "tools": [],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "classifier",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "{\"is_shipping_related\":true,\"reason\":\"The user is asking about the return window for a package, which falls under the category of returns.\"}"
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "shipping_faq_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "Hello there! I would be absolutely delighted to help you with your return question today! 😊\n\nYou have a **30-day window** from the date of delivery to return your package. 📅 \n\nThe even better news? Return shipping is completely **FREE**! Just use our pre-paid return label to send your package back to us. Once we receive your returned item, we will process your refund within **5-7 business days**. \n\nIf you need help getting a return label or have any other questions, please let me know. I'm always here to help! Have a wonderful day! 🌟"
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "What is the capital of Japan?"
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "I'm sorry, but I can only help you with shipping-related inquiries (such as rates, tracking, delivery, or returns). How can I assist you with your shipping needs today?"
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "unrelated_capital",
+      "agent_data": {
+        "agents": {
+          "customer_support_agent": {
+            "agent_id": "customer_support_agent",
+            "agent_type": "Workflow",
+            "description": "Customer support routing agent for a shipping company.",
+            "tools": [],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "classifier",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "{\"is_shipping_related\":false,\"reason\":\"The query is a general knowledge question about the capital of Japan and has no relation to shipping, tracking, delivery, or returns.\"}"
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "customer_support_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "I'm sorry, but I can only help you with shipping-related inquiries (such as rates, tracking, delivery, or returns). How can I assist you with your shipping needs today?"
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "What is 25 * 4?"
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "I'm sorry, but I can only help you with shipping-related inquiries (such as rates, tracking, delivery, or returns). How can I assist you with your shipping needs today?"
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "unrelated_math",
+      "agent_data": {
+        "agents": {
+          "customer_support_agent": {
+            "agent_id": "customer_support_agent",
+            "agent_type": "Workflow",
+            "description": "Customer support routing agent for a shipping company.",
+            "tools": [],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "classifier",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "{\"is_shipping_related\":false,\"reason\":\"The query is a basic math multiplication question and has no relation to shipping, tracking, delivery, or returns.\"}"
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "customer_support_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "I'm sorry, but I can only help you with shipping-related inquiries (such as rates, tracking, delivery, or returns). How can I assist you with your shipping needs today?"
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "prompt": {
+        "parts": [
+          {
+            "text": "Write a python function to add two numbers."
+          }
+        ],
+        "role": "user"
+      },
+      "responses": [
+        {
+          "response": {
+            "parts": [
+              {
+                "text": "I'm sorry, but I can only help you with shipping-related inquiries (such as rates, tracking, delivery, or returns). How can I assist you with your shipping needs today?"
+              }
+            ],
+            "role": "model"
+          }
+        }
+      ],
+      "eval_case_id": "unrelated_coding",
+      "agent_data": {
+        "agents": {
+          "customer_support_agent": {
+            "agent_id": "customer_support_agent",
+            "agent_type": "Workflow",
+            "description": "Customer support routing agent for a shipping company.",
+            "tools": [],
+            "sub_agents": []
+          }
+        },
+        "turns": [
+          {
+            "turn_index": 0,
+            "turn_id": "turn_0",
+            "events": [
+              {
+                "author": "classifier",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "{\"is_shipping_related\":false,\"reason\":\"The query is a request for a Python programming function to add two numbers, which has no connection to shipping, tracking, delivery, or returns.\"}"
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "customer_support_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "I'm sorry, but I can only help you with shipping-related inquiries (such as rates, tracking, delivery, or returns). How can I assist you with your shipping needs today?"
+                    }
+                  ],
+                  "role": "model"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

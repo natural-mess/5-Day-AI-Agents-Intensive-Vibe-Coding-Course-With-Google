@@ -1,0 +1,14 @@
+[project]
+name = "submission-frontend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11, <3.14"
+dependencies = [
+    "fastapi>=0.136.3",
+    "google-adk>=2.2.0",
+    "google-cloud-aiplatform>=1.156.0",
+    "jinja2>=3.1.6",
+    "pydantic>=2.13.4",
+    "uvicorn>=0.49.0",
+]
